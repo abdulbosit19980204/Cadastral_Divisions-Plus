@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastral Divisions Plus – Hujjat</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; color: #222; line-height: 1.6; }
+        h1, h2, h3 { color: #004a7c; }
+        h1 { border-bottom: 2px solid #004a7c; padding-bottom: 10px; }
+        section { margin-bottom: 32px; }
+        ul { margin-top: 8px; }
+        code { background: #f2f2f2; padding: 2px 6px; border-radius: 3px; }
+        .tag-pill { display: inline-block; margin: 3px; padding: 4px 10px; background: #eef5fb; border-radius: 999px; border: 1px solid #c7dff5; font-size: 13px; }
+        .changelog li { margin-bottom: 6px; }
+        .box { border-left: 4px solid #19967d; padding: 12px 18px; background: #f5fffc; }
+        .table { border-collapse: collapse; width: 100%; }
+        .table th, .table td { border: 1px solid #ddd; padding: 8px; }
+        .table th { background: #f0f6fb; }
+    </style>
+</head>
+<body>
+
+<h1>Cadastral Divisions Plus</h1>
+<p>Poligonlarni kesib, n ta teng bo‘lak yoki maqsad yuzasi asosida yangi qatlam hosil qilish uchun kengaytirilgan QGIS Processing plagini.</p>
+
+<section>
+    <h2>Yangi qo‘shilgan + lar</h2>
+    <ul>
+        <li><strong>Residual (qoldiq) boshqaruvi</strong>: oxirgi bo‘lak yetarli bo‘lmasa, qoldiqni birinchi/oxirgi/tanlangan bo‘lakka qo‘shish yoki alohida qoldirish.</li>
+        <li><strong>Ko‘p til</strong>: italiyan, ispan, inglizga qo‘shimcha ravishda ruscha va o‘zbekcha UI matnlari.</li>
+        <li><strong>Rebrending</strong>: modul fayllar va Processing guruhi `Cadastral Divisions Plus` nomi bilan ro‘yxatdan o‘tadi — original plagin bilan to‘qnashmaydi.</li>
+        <li><strong>Yangi qatlam prefiksi</strong>: Natija fayllari `FractPlus_YYYY-MM-DD HH:MM:SS` nomi bilan yaratiladi.</li>
+        <li><strong>Stabillik</strong>: mavjud atributlar saqlanib, `sub`, `part`, `area` maydonlari avtomatik qo‘shiladi.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>O‘rnatish</h2>
+    <ol>
+        <li>Repo papkasini ZIP qiling yoki `Cadastral_Divisions-main` katalogini to‘g‘ridan-to‘g‘ri <code>QGIS3/profiles/default/python/plugins/</code> ichiga nusxalash.</li>
+        <li>QGIS’ni qayta ishga tushiring, <em>Plugins &gt; Manage and Install Plugins</em> ichidan “Cadastral Divisions Plus” ni yoqing.</li>
+        <li>Agar Plugin Reloader’dan foydalanayotgan bo‘lsangiz, toolbar ichidagi drop-down ro‘yxatdan shu nomni tanlang.</li>
+    </ol>
+</section>
+
+<section>
+    <h2>Ishlatish bo‘yicha qo‘llanma</h2>
+    <div class="box">
+        <p><strong>Processing Toolbox &gt; Cadastral Plus &gt; Cadastral Divisions Plus</strong> algoritmini ishga tushiring.</p>
+    </div>
+    <table class="table">
+        <thead>
+            <tr><th>Parametr</th><th>Tavsif</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Input Poly layer</td><td>Bo‘linadigan poligon(lar).</td></tr>
+            <tr><td>Input Line layer</td><td>Bo‘luvchi chiziq; agar qisqa bo‘lsa, algoritm uni cho‘zadi va markazlashtiradi.</td></tr>
+            <tr><td>Split with divider manually positioned</td><td>True bo‘lsa, chiziqqa hech qanday avtomatik tuzatish qo‘llanmaydi.</td></tr>
+            <tr><td>Denominator fraction or 1/n parts</td><td>n ta teng bo‘lak yoki kasr maxraji.</td></tr>
+            <tr><td>Splitting into equal parts</td><td>n &gt; 2 bo‘lganda ketma-ket kesish rejimi.</td></tr>
+            <tr><td>Surface area to be obtained</td><td>Maqsad yuzasi (kvadrat birliklarda). Berilsa, ulush o‘rniga shu miqdor kesiladi.</td></tr>
+            <tr><td>Invert parts</td><td>Chiziqqa nisbatan yuqori/pastki yoki chap/o‘ng qismlarni almashtiradi.</td></tr>
+            <tr><td>Residual handling mode</td><td>Qoldiqni oxirgi, birinchi, tanlangan bo‘lakka qo‘shish yoki alohida qoldirish.</td></tr>
+            <tr><td>Residual target part</td><td>“Manual” rejimda qoldiq biriktiriladigan bo‘lak raqami (1 dan boshlab).</td></tr>
+        </tbody>
+    </table>
+
+    <p>Natijada yaratiladigan qatlamga original atributlar bilan birga quyidagilar qo‘shiladi:</p>
+    <ul>
+        <li><code>sub ...</code>: bo‘lak identifikatori (masalan, <em>sub 1</em>, <em>sub qoldiq</em>).</li>
+        <li><code>..._part</code>: bo‘lakning umumiy yuzaga foiz nisbati.</li>
+        <li><code>..._area</code>: real yuzasi.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Taglar</h2>
+    <div>
+        <span class="tag-pill">python</span>
+        <span class="tag-pill">polygon</span>
+        <span class="tag-pill">split</span>
+        <span class="tag-pill">cadastre</span>
+        <span class="tag-pill">cadastral</span>
+        <span class="tag-pill">frazionamenti</span>
+        <span class="tag-pill">parcel</span>
+    </div>
+</section>
+
+<section>
+    <h2>Changelog</h2>
+    <ul class="changelog">
+        <li><strong>1.2 Plus</strong> – Residual boshqaruvi, rus/uz til bloklari, yangi nom va ikon prefikslari.</li>
+        <li><strong>1.2</strong> – Ispan tiliga tarjima.</li>
+        <li><strong>1.1</strong> – Tarjimalar va hujjatga havola.</li>
+        <li><strong>1.0</strong> – Frazionamenti Processing’dan migratsiya.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Mualliflik ma’lumotlari</h2>
+    <p>Asosiy muallif: Giulio Fattori — <a href="mailto:giulio.fattori@tin.it">giulio.fattori@tin.it</a>.</p>
+    <p>Qo‘shimcha o‘zgartirishlar: “Plus” forki (residual, lokalizatsiya, rebrending).</p>
+</section>
+
+</body>
+</html>
+

@@ -1,0 +1,57 @@
+# This file contains metadata for your plugin.
+
+# This file should be included when you package your plugin.# Mandatory items:
+
+[general]
+name=Cadastral Divisions Plus
+qgisMinimumVersion=3.0
+description=Split a polygon (parcel) according to a line into n equal parts or by imposed area size
+description[it]=Divide un poligono (mappale) secondo una linea in n parti uguali o per area imposta
+description[ca]=Divide un polígono (parcela) siguiendo una línea en partes iguales o por área impuesta
+description[es]=Divide un polígono (parcela) siguiendo una línea en partes iguales o por área impuesta
+description[ru]=Делит полигон по линии на равные части или по заданной площади
+description[uz]=Poligonni chiziq bo'yicha teng bo'laklarga yoki berilgan yuzaga ko'ra bo'ladi
+version=1.2
+author=Giulio Fattori
+email=giulio.fattori@tin.it
+
+about=Split a polygon (parcel) according to a line into n equal parts or by an imposed area size, generating a new layer
+about[it]=Divide un poligono (mappale) secondo una linea in n parti uguali o per superficie imposta generando un nuovo layer
+about[ca]=Divide un polígono (parcela) siguiendo una línea en partes iguales o por área impuesta generando una nueva capa
+about[es]=Divide un polígono (parcela) siguiendo una línea en partes iguales o por área impuesta generando una nueva capa
+about[ru]=Делит полигон по направляющей линии, создаёт новый слой с заданными долями или площадью
+about[uz]=Poligonni ko'rsatilgan chiziq bo'yicha bo'lib, belgilangan ulush yoki yuzaga ega yangi qatlam yaratadi
+tracker=https://github.com/Korto19/Cadastral_Divisions/issues
+repository=https://github.com/Korto19/Cadastral_Divisions
+# End of mandatory metadata
+
+# Recommended items:
+
+hasProcessingProvider=yes
+# Uncomment the following line and add your changelog:
+changelog=  1.0 migration from Frazionamenti processing
+            1.1 added translation and link to documentation
+	    1.2 added spanish translation
+
+# Tags are comma separated with spaces allowed
+tags=python,polygon,split,catasto,cadastre,cadastral,Referencia Catastral,Cadastral Parcel,frazionamenti,mappali,catastali,particelle,dividere,divide,dividi,parcel
+
+homepage=https://github.com/Korto19/Cadastral_Divisions#frazionamenti-cadastral-divisions
+category=Processing, script
+icon=icon.png
+# experimental flag
+experimental=False
+
+# deprecated flag (applies to the whole plugin, not just a single version)
+deprecated=False
+
+# Since QGIS 3.8, a comma separated list of plugins to be installed
+# (or upgraded) can be specified.
+# Check the documentation for more information.
+# plugin_dependencies=
+
+Category of the plugin: Raster, Vector, Database or Web
+# category=Vector
+
+# If the plugin can run on QGIS Server.
+server=False
