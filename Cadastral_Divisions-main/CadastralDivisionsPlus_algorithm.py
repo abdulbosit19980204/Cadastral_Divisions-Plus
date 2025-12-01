@@ -22,9 +22,9 @@
  ***************************************************************************/
 """
 
-__author__ = 'Giulio Fattori'
-__date__ = '2020-12-01'
-__copyright__ = '(C) 2020 by Giulio Fattori'
+__author__ = 'Xolmatjonov Shaxboz; Tuychiev Abdulbosit'
+__date__ = '2025-12-01'
+copyright__ = '(C) 2020-2025 by Xolmatjonov Shaxboz and Tuychiev Abdulbosit'
 
 # This will get replaced with a git SHA1 when you do a git archive
 
@@ -109,6 +109,7 @@ if settings.value('locale/userLocale')[0:2] == 'it':
     res_mode_first = 'Aggiungi il residuo alla prima parte'
     res_mode_manual = 'Aggiungi il residuo alla parte scelta'
     res_mode_separate = 'Mantieni il residuo come parte autonoma'
+    res_mode_ignore = 'Ignora l\'area residua'
     feed_10 = 'Residuo assegnato alla parte '
     feed_11 = 'Residuo mantenuto come parte autonoma'
     feed_12 = 'Indice residuo fuori intervallo, mantenuto come parte autonoma'
@@ -164,6 +165,7 @@ elif settings.value('locale/userLocale')[0:2] in ('es','ca'):
     res_mode_first = 'Agregar residuo a la primera parte'
     res_mode_manual = 'Agregar residuo a la parte seleccionada'
     res_mode_separate = 'Mantener residuo como parte independiente'
+    res_mode_ignore = 'Ignorar el residuo'
     feed_10 = 'Residuo asignado a la parte '
     feed_11 = 'Residuo conservado como parte independiente'
     feed_12 = 'Parte indicada no válida; residuo mantenido aparte'
@@ -219,6 +221,7 @@ elif settings.value('locale/userLocale')[0:2] == 'ru':
     res_mode_first = 'Добавить остаток к первой части'
     res_mode_manual = 'Добавить остаток к выбранной части'
     res_mode_separate = 'Оставить остаток как отдельную часть'
+    res_mode_ignore = 'Игнорировать остаток'
     feed_10 = 'Остаток добавлен к части '
     feed_11 = 'Остаток сохранён отдельной частью'
     feed_12 = 'Недопустимый номер части, остаток сохранён отдельно'
@@ -274,6 +277,7 @@ elif settings.value('locale/userLocale')[0:2] == 'uz':
     res_mode_first = 'Qoldiqni birinchi bo\'lakka qo\'shish'
     res_mode_manual = 'Qoldiqni tanlangan bo\'lakka qo\'shish'
     res_mode_separate = 'Qoldiqni alohida bo\'lak sifatida qoldirish'
+    res_mode_ignore = 'Qoldiqni hisobga olmaslik'
     feed_10 = 'Qoldiq qo\'shilgan bo\'lak: '
     feed_11 = 'Qoldiq alohida bo\'lak bo\'lib qoldi'
     feed_12 = 'Bo\'lak raqami noto\'g\'ri, qoldiq alohida qoldirildi'
@@ -329,6 +333,7 @@ else:
     res_mode_first = 'Append residual to first part'
     res_mode_manual = 'Append residual to chosen part'
     res_mode_separate = 'Keep residual as standalone part'
+    res_mode_ignore = 'Ignore residual area'
     feed_10 = 'Residual assigned to part '
     feed_11 = 'Residual kept as standalone part'
     feed_12 = 'Residual target outside range, keeping standalone'
@@ -486,7 +491,8 @@ class  CadastralDivisionsPlusAlgorithm(QgsProcessingAlgorithm):
                     self.tr(res_mode_last),
                     self.tr(res_mode_first),
                     self.tr(res_mode_manual),
-                    self.tr(res_mode_separate)
+                    self.tr(res_mode_separate),
+                    self.tr(res_mode_ignore)
                 ],
                 defaultValue=0
             )
@@ -862,6 +868,8 @@ class  CadastralDivisionsPlusAlgorithm(QgsProcessingAlgorithm):
 
         if residual_part:
             target_index = None
+            standalone = False
+            ignore_residual = False
             if residual_mode == 0 and output_parts:
                 target_index = len(output_parts) - 1
             elif residual_mode == 1 and output_parts:
@@ -872,6 +880,11 @@ class  CadastralDivisionsPlusAlgorithm(QgsProcessingAlgorithm):
                     target_index = requested_index
                 else:
                     feedback.pushInfo(feed_12)
+            elif residual_mode == 3:
+                standalone = True
+            elif residual_mode == 4:
+                ignore_residual = True
+
             if target_index is not None:
                 target_part = output_parts[target_index]
                 merged = target_part['geometry'].combine(residual_part['geometry'])
@@ -882,10 +895,9 @@ class  CadastralDivisionsPlusAlgorithm(QgsProcessingAlgorithm):
                     target_part['area'] = merged.area()
                     feedback.pushInfo(feed_10 + str(target_index + 1))
                 else:
-                    residual_part['label'] = label_residual
-                    output_parts.append(residual_part)
-                    feedback.pushInfo(feed_11)
-            else:
+                    standalone = True
+
+            if standalone and not ignore_residual:
                 residual_part['label'] = label_residual
                 output_parts.append(residual_part)
                 feedback.pushInfo(feed_11)

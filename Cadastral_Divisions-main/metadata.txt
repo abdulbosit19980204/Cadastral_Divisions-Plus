@@ -5,22 +5,22 @@
 [general]
 name=Cadastral Divisions Plus
 qgisMinimumVersion=3.0
-description=Split a polygon (parcel) according to a line into n equal parts or by imposed area size
-description[it]=Divide un poligono (mappale) secondo una linea in n parti uguali o per area imposta
-description[ca]=Divide un polígono (parcela) siguiendo una línea en partes iguales o por área impuesta
-description[es]=Divide un polígono (parcela) siguiendo una línea en partes iguales o por área impuesta
-description[ru]=Делит полигон по линии на равные части или по заданной площади
-description[uz]=Poligonni chiziq bo'yicha teng bo'laklarga yoki berilgan yuzaga ko'ra bo'ladi
+description=Split a polygon (parcel) according to a line into n equal parts or by an imposed area size, with advanced residual handling (Plus fork)
+description[it]=Divide un poligono (mappale) secondo una linea in n parti uguali o per area imposta, con gestione avanzata dell'area residua (fork Plus)
+description[ca]=Divideix un polígon (parcela) seguint una línia en parts iguals o per àrea imposada, amb gestió avançada del residu (fork Plus)
+description[es]=Divide un polígono (parcela) siguiendo una línea en partes iguales o por área impuesta, con gestión avanzada del residuo (fork Plus)
+description[ru]=Делит полигон по линии на равные части или по заданной площади, с расширенными режимами обработки остатка (форк Plus)
+description[uz]=Poligonni chiziq bo'yicha teng bo'laklarga yoki berilgan yuzaga ko'ra bo'lib, qoldiqni boshqarishning kengaytirilgan rejimlariga ega (Plus fork)
 version=1.2
-author=Giulio Fattori
+author=Giulio Fattori; Xolmatjonov Shaxboz (Plus fork)
 email=giulio.fattori@tin.it
 
-about=Split a polygon (parcel) according to a line into n equal parts or by an imposed area size, generating a new layer
-about[it]=Divide un poligono (mappale) secondo una linea in n parti uguali o per superficie imposta generando un nuovo layer
-about[ca]=Divide un polígono (parcela) siguiendo una línea en partes iguales o por área impuesta generando una nueva capa
-about[es]=Divide un polígono (parcela) siguiendo una línea en partes iguales o por área impuesta generando una nueva capa
-about[ru]=Делит полигон по направляющей линии, создаёт новый слой с заданными долями или площадью
-about[uz]=Poligonni ko'rsatilgan chiziq bo'yicha bo'lib, belgilangan ulush yoki yuzaga ega yangi qatlam yaratadi
+about=Split a polygon (parcel) according to a line into n equal parts or by an imposed area size, generating a new layer. Plus fork by Xolmatjonov Shaxboz adds multi-language support, advanced residual modes (last/first/manual/separate/ignore) and safer layer naming.
+about[it]=Divide un poligono (mappale) secondo una linea in n parti uguali o per superficie imposta generando un nuovo layer. Il fork Plus di Xolmatjonov Shaxboz aggiunge gestione avanzata dei residui, nuove traduzioni e nomi di layer più sicuri.
+about[ca]=Divideix un polígon (parcela) seguint una línia en parts iguals o per àrea imposada, generant una nova capa. El fork Plus de Xolmatjonov Shaxboz afegeix traduccions addicionals, modes avançats per al residu i noms de capa més segurs.
+about[es]=Divide un polígono (parcela) siguiendo una línea en partes iguales o por área impuesta, generando una nueva capa. El fork Plus de Xolmatjonov Shaxboz incorpora modos avanzados de manejo del residuo, traducciones adicionales y nombres de capa más seguros.
+about[ru]=Делит полигон по направляющей линии, создаёт новый слой с заданными долями или площадью. Форк Plus (Xolmatjonov Shaxboz) добавляет расширенные режимы обработки остатка (последняя/первая/выбранная/отдельная/игнорировать), русскую и узбекскую локализацию и более безопасные имена слоёв.
+about[uz]=Poligonni ko'rsatilgan chiziq bo'yicha bo'lib, belgilangan ulush yoki yuzaga ega yangi qatlam yaratadi. Plus forki (Xolmatjonov Shaxboz) qoldiqni boshqarishning kengaytirilgan rejimlarini (oxirgi/birinchi/tanlangan/alohida/inkor), ruscha va o'zbekcha lokalizatsiyani hamda xavfsizroq qatlam nomlashni qo'shadi.
 tracker=https://github.com/Korto19/Cadastral_Divisions/issues
 repository=https://github.com/Korto19/Cadastral_Divisions
 # End of mandatory metadata
@@ -29,9 +29,10 @@ repository=https://github.com/Korto19/Cadastral_Divisions
 
 hasProcessingProvider=yes
 # Uncomment the following line and add your changelog:
-changelog=  1.0 migration from Frazionamenti processing
-            1.1 added translation and link to documentation
-	    1.2 added spanish translation
+changelog=  1.0 migration from Frazionamenti processing (Giulio Fattori)
+            1.1 added translation and link to documentation (Giulio Fattori)
+            1.2 added spanish translation (Giulio Fattori)
+            1.2 Plus added advanced residual handling modes (last/first/manual/separate/ignore), Russian and Uzbek localisation, rebranding as \"Cadastral Divisions Plus\" and updated documentation (Xolmatjonov Shaxboz)
 
 # Tags are comma separated with spaces allowed
 tags=python,polygon,split,catasto,cadastre,cadastral,Referencia Catastral,Cadastral Parcel,frazionamenti,mappali,catastali,particelle,dividere,divide,dividi,parcel
